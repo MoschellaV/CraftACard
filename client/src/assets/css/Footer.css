@@ -1,0 +1,36 @@
+.bg-footer-color{
+    background-color: #4D6B73;
+    position: relative;
+    z-index: 10;
+    box-shadow: 0px -10px 15px -6px rgba(0,0,0,.5);
+}
+.footer-header{
+    opacity: 0.5;
+}
+.footer-text{
+    opacity: 0.7;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+.footer-center-column{
+    text-align: center;
+}
+.policy{
+    padding-top: 2%;
+    text-align: center;
+    font-size: 0.8rem;
+}
+.policy .legal{
+    display: inline-block;
+    padding: 0 20px;
+}
+.policy .name{
+    opacity: 0.7;
+    font-weight: 500;
+}
+@media only screen and (max-width: 991px) {
+    .footer-div .description-div{
+        text-align: center;
+        padding-bottom: 10px;
+    }
+  }

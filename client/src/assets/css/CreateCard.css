@@ -1,0 +1,46 @@
+.create-card-bg{
+    background-color: #FAF9F6;
+}
+.create-card-section{
+    padding-top: 10%;
+    padding-bottom: 10%;
+    padding-left: 8%;
+    padding-right: 8%;
+}
+.create-card-section .header{
+    font-weight: 300;
+    font-size: 4.3rem;
+    text-align: center;
+    padding-bottom: 20px;
+}
+.create-card-section .subheader{
+    font-weight: 700;
+    font-size: 2rem;
+    color: #000000;
+    opacity: 67%;
+    margin: 15px 0;
+}
+.create-card-section .description{
+    font-weight: 200;
+    font-size: 1.2rem;
+    opacity: 85%;
+}
+.fields{
+    padding: 5px 0;
+}
+.resize-on-upload{
+    padding-top: 10px;
+    width: 100%;
+    object-fit: contain;
+}
+/* css animation */
+.grow { 
+    transition: all .2s ease-in-out;  
+}  
+.grow:hover { 
+    transform: scale(1.1); 
+}
+.generate-buttons{
+    margin-top: 7px;
+    padding: 0 12px;
+}

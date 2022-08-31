@@ -1,0 +1,48 @@
+.deep-blue-bg{
+    position: relative;
+    z-index: 10;
+    background-color: #4D6B73;
+    box-shadow: 0px -10px 15px -6px rgba(0,0,0,.5), 0px 10px 15px -6px rgba(0,0,0,.5);
+}
+.about-section{
+    padding: 13% 15px 13% 10%;
+}
+.about-section .center-col{
+    display: flex;
+    align-items: center;
+    text-align: left;
+    color: #fff;
+}
+.about-section .center-col .header{
+    font-weight: 300;
+    font-size: 2.9rem;
+}
+.about-section .center-col .subheader{
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #fff;
+    opacity: 67%;
+    margin: 15px 0 40px;
+
+}
+.about-section .center-col .description{
+    font-weight: 200;
+    font-size: 1.2rem;
+    opacity: 85%;
+    line-height: 1.8;
+    max-width: 310px;
+}
+.about-section .resize-img{
+    width: 85%;
+}
+@media only screen and (max-width: 991px) {
+    .about-section{
+        padding-right: 10%;
+    }
+    .about-section .center-col{
+        text-align: center;
+        justify-content: center;
+    }
+  }
+
+
