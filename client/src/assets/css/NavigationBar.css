@@ -1,44 +1,44 @@
-.navbar-font{
-    font-family: 'Noto Sans', sans-serif;
-    font-weight: 700;
-    color: #fff;
+.navbar-font {
+  font-family: "Noto Sans", sans-serif;
+  font-weight: 700;
+  color: #fff;
 }
-.navbar-heading{
-    font-size: 1.5rem;
-    color: #fff;
+.navbar-heading {
+  font-size: 1.7rem !important;
+  color: #fff;
 }
-.navbar-link{
-    text-decoration: none; 
+.navbar-link {
+  font-size: clamp(0.8rem, 1.15rem, 1.3rem);
+  text-decoration: none;
+  cursor: pointer;
 }
-.navbar-link:hover{
-    opacity: 60%;
-    color: #fff;
+.navbar-link:hover {
+  opacity: 60%;
+  color: #fff;
 }
-.item-spacing{
-    margin: 0 40px;
+.item-spacing {
+  margin: 0 40px;
 }
 .offcanvas.offcanvas-end {
-    width: 45%;
+  width: 60%;
 }
-.navbar{
-    --bs-navbar-active-color: #fff;
-    background-color: transparent;
+.navbar {
+  --bs-navbar-active-color: #fff;
+  background-color: transparent;
 }
-.active-navbar{
-   background-color: #EDDCBC;
-   box-shadow: 0px 10px 15px -6px rgba(0,0,0,.5);
+.active-navbar {
+  background-color: #eddcbc;
+  box-shadow: 0px 10px 15px -6px rgba(0, 0, 0, 0.5);
 }
 @media only screen and (max-width: 991px) {
-    .offcanvas-title.navbar-font{
-        font-size: 1.6rem;
-        color: #000;
-    }
-    .offcanvas-body .navbar-font{
-        margin-left: 5px;
-        font-size: 1.2rem;
-        padding: 10px;
-        color: #000;
-    }
+  .offcanvas-title.navbar-font {
+    font-size: 1.6rem;
+    color: #000;
   }
-
-
+  .offcanvas-body .navbar-font {
+    margin-left: 5px;
+    font-size: 1.2rem;
+    padding: 10px;
+    color: #000;
+  }
+}

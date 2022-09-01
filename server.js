@@ -3,8 +3,10 @@ const cors = require("cors");
 const nodemailer = require("nodemailer");
 const multer = require("multer");
 const axios = require("axios");
-const fs = require("fs");
 const path = require("path");
+const fs = require("fs");
+const mongoose = require("mongoose");
+const mainSchema = require("./shcemas/mainSchema");
 require("dotenv").config();
 
 const upload = multer({ dest: "./uploads/" });
@@ -13,6 +15,60 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cors());
 
+// For Deployment
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+
+  app.get("/", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
+
+// Function that gets time
+const getTime = () => {
+  var today = new Date();
+  var date =
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+  var time =
+    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  var dateTime = date + " " + time;
+  return dateTime;
+};
+
+// Mongodb database
+const uri = `mongodb+srv://${process.env.USERDATABASE}:${process.env.PASSDATABASE}@mycluster.fu6mrzr.mongodb.net/CraftACardDB?retryWrites=true&w=majority`;
+
+const connectToDB = async () => {
+  try {
+    await mongoose.connect(uri);
+
+    console.log("Connected to MongoDB");
+  } catch (error) {
+    console.log(error);
+  }
+};
+connectToDB();
+
+const storeData = async (name, occasion, email, message, imageURL, image) => {
+  const data = {
+    timeSent: getTime(),
+    name: name,
+    occasion: occasion,
+    recipientEmail: email,
+    message: message,
+    imageURL: imageURL,
+    image: image,
+  };
+
+  try {
+    await new mainSchema(data).save();
+    console.log("stored data");
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// Functions handling imageURL or image uploading
 uploadedImage = (req, name, occasion, email, message) => {
   let fileType = req.file.mimetype.split("/")[1];
 
@@ -61,15 +117,7 @@ uploadURL = (name, occasion, email, image, message) => {
   };
 };
 
-// For Deployment
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-
-  app.get("/", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-}
-// Getting Image (getting quotes is done on front end because it dosen't requier a key)
+// Getting Image (getting quotes is done on front end because it dosen't require an api key)
 app.get("/unsplashimage", (req, res) => {
   const options = {
     method: "GET",
@@ -91,23 +139,23 @@ app.get("/unsplashimage", (req, res) => {
 
 // Sending email
 app.post("/post_data", upload.single("image"), async (req, res) => {
-  res.send("response");
-
   let { name, occasion, email, image, message } = req.body;
 
-  // Detects i the useer generated or uploaded an image
+  // Detects if the user generated or uploaded an image
   if (typeof image == "undefined") {
     uploadedImage(req, name, occasion, email, message);
+    storeData(name, occasion, email, message, null, null);
   } else {
     uploadURL(name, occasion, email, image, message);
+    storeData(name, occasion, email, message, image, null);
   }
 
   // Define nodemailer transporter
   let mailTransporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: process.env.USER,
-      pass: process.env.PASS,
+      user: process.env.GMAIL,
+      pass: process.env.GMAILPASS,
     },
   });
 
@@ -119,6 +167,8 @@ app.post("/post_data", upload.single("image"), async (req, res) => {
       console.log("email sent");
     }
   });
+
+  res.send("sent");
 });
 
 const PORT = process.env.PORT || 4000;

@@ -49,15 +49,27 @@ const CreateCard = () => {
               "Content-Type": "multipart/form-data",
             },
           })
-          .then(() => {
-            updateNotification({
-              id: "load-data",
-              color: "green",
-              title: "Yay!",
-              message: "Your eCard has been sent",
-              icon: <IconCheck size={16} />,
-              autoClose: 4000,
-            });
+          .then((res) => {
+            console.log(res);
+            if (res.data === "sent") {
+              updateNotification({
+                id: "load-data",
+                color: "green",
+                title: "Yay!",
+                message: "Your eCard has been sent",
+                icon: <IconCheck size={16} />,
+                autoClose: 4000,
+              });
+            } else {
+              updateNotification({
+                id: "load-data",
+                color: "red",
+                title: "Uh o000h!",
+                message: "Your eCard could not be sent",
+                icon: <IconX size={16} />,
+                autoClose: 5000,
+              });
+            }
             setMessage("");
           });
       } else {

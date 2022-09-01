@@ -29,7 +29,7 @@ const NavigationBar = () => {
       className={navbar ? "active-navbar" : ""}
       fixed="top"
     >
-      <Container fluid style={{ padding: "10px 13%" }}>
+      <Container fluid style={{ padding: "15px 13%" }}>
         <Link
           to="home"
           smooth={true}
@@ -40,8 +40,8 @@ const NavigationBar = () => {
           <img
             alt=""
             src={logo}
-            width="30"
-            height="30"
+            width="40"
+            height="40"
             className="d-inline-block align-top me-2"
             style={{ transform: "rotate(-25deg)" }}
           />
@@ -65,28 +65,28 @@ const NavigationBar = () => {
           <Offcanvas.Body>
             <Nav className="justify-content-end flex-grow-1 pe-3">
               <Link
-                to="about"
-                smooth={true}
-                offset={-60}
-                duration={800}
-                className="navbar-font navbar-link item-spacing"
-              >
-                About
-              </Link>
-              <Link
                 to="preview"
                 smooth={true}
-                offset={-100}
-                duration={800}
+                offset={50}
+                duration={500}
                 className="navbar-font navbar-link item-spacing"
               >
                 Preview
               </Link>
               <Link
+                to="about"
+                smooth={true}
+                offset={50}
+                duration={500}
+                className="navbar-font navbar-link item-spacing"
+              >
+                About
+              </Link>
+              <Link
                 to="create-card"
                 smooth={true}
-                offset={-50}
-                duration={800}
+                offset={50}
+                duration={500}
                 className="navbar-font navbar-link item-spacing"
               >
                 Create
