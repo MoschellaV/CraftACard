@@ -42,7 +42,7 @@ const connectToDB = async () => {
   try {
     await mongoose.connect(uri);
 
-    console.log("Connected to MongoDB");
+    console.log("Connected to MongoDB Database");
   } catch (error) {
     console.log(error);
   }
@@ -68,7 +68,7 @@ const storeData = async (name, occasion, email, message, imageURL, image) => {
   }
 };
 
-// Functions handling imageURL or image uploading
+// Functions handling sending email with imageURL or uploaded image
 uploadedImage = (req, name, occasion, email, message) => {
   let fileType = req.file.mimetype.split("/")[1];
 
@@ -93,7 +93,7 @@ uploadedImage = (req, name, occasion, email, message) => {
       from: `${name} <craftacard@gmail.com>`,
       to: email,
       subject: occasion,
-      html: `<img src="cid:${req.file.filename}"/><br><h2>${message}</h2> <p style="margin-top:100px;">✉ Craft a Card </p>`,
+      html: `<img src="cid:${req.file.filename}"/><br><h2>${message}</h2> <p style="margin-top:100px;">✉ <a href="https://craftacard.herokuapp.com/">Craft a Card</a></p>`,
       attachments: [
         {
           filename: newFileName,
@@ -113,7 +113,7 @@ uploadURL = (name, occasion, email, image, message) => {
     from: `${name} <craftacard@gmail.com>`,
     to: email,
     subject: occasion,
-    html: `<img src="${imageURL}"/><br><h2>${message}</h2> <p style="margin-top:100px;">✉ Craft a Card </p>`,
+    html: `<img src="${imageURL}"/><br><h2>${message}</h2> <p style="margin-top:100px;">✉ <a href="https://craftacard.herokuapp.com/">Craft a Card</a></p>`,
   };
 };
 
